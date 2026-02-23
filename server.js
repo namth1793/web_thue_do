@@ -7,11 +7,16 @@ const path = require('path');
 
 const app = express();
 
-// Middleware — cho phép mọi port localhost trong development
+// CORS: cho phép localhost (dev) + Vercel domain (production)
+const ALLOWED_ORIGIN = process.env.ALLOWED_ORIGIN || '';
 app.use(cors({
   origin: (origin, callback) => {
-    // Cho phép requests không có origin (Postman, curl) và mọi localhost
-    if (!origin || /^http:\/\/localhost(:\d+)?$/.test(origin)) {
+    if (
+      !origin ||
+      /^http:\/\/localhost(:\d+)?$/.test(origin) ||
+      /^https:\/\/.*\.vercel\.app$/.test(origin) ||
+      (ALLOWED_ORIGIN && origin === ALLOWED_ORIGIN)
+    ) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
