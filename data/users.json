@@ -1,0 +1,9 @@
+[
+  {
+    "id": "1",
+    "email": "admin@thuedo.vn",
+    "password": "$2a$10$4vNZCsiIG2JAej.YrQWbCu7veLsPIo/lhVgCjoazbru1z9DmomJQ2",
+    "name": "Admin Thuê Đồ",
+    "role": "admin"
+  }
+]

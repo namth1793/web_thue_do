@@ -1,0 +1,122 @@
+[
+  {
+    "id": "ord001",
+    "productId": "1",
+    "productName": "Váy dạ hội đỏ sang trọng",
+    "customerName": "Nguyễn Thị Lan",
+    "rentalDate": "2025-12-01",
+    "returnDate": "2025-12-03",
+    "totalPrice": 350000,
+    "createdAt": "2025-12-01T08:00:00.000Z"
+  },
+  {
+    "id": "ord002",
+    "productId": "2",
+    "productName": "Áo dài truyền thống hồng pastel",
+    "customerName": "Trần Thị Mai",
+    "rentalDate": "2025-12-05",
+    "returnDate": "2025-12-07",
+    "totalPrice": 250000,
+    "createdAt": "2025-12-05T09:00:00.000Z"
+  },
+  {
+    "id": "ord003",
+    "productId": "4",
+    "productName": "Váy cưới trắng đuôi cá",
+    "customerName": "Lê Thị Hoa",
+    "rentalDate": "2025-12-10",
+    "returnDate": "2025-12-11",
+    "totalPrice": 800000,
+    "createdAt": "2025-12-10T07:00:00.000Z"
+  },
+  {
+    "id": "ord004",
+    "productId": "3",
+    "productName": "Vest nam xanh navy cổ điển",
+    "customerName": "Phạm Văn Nam",
+    "rentalDate": "2025-12-15",
+    "returnDate": "2025-12-16",
+    "totalPrice": 400000,
+    "createdAt": "2025-12-15T10:00:00.000Z"
+  },
+  {
+    "id": "ord005",
+    "productId": "6",
+    "productName": "Áo dài cách tân tím lavender",
+    "customerName": "Võ Thị Thu",
+    "rentalDate": "2025-12-20",
+    "returnDate": "2025-12-22",
+    "totalPrice": 300000,
+    "createdAt": "2025-12-20T11:00:00.000Z"
+  },
+  {
+    "id": "ord006",
+    "productId": "8",
+    "productName": "Váy dạ hội xanh emerald",
+    "customerName": "Đỗ Thị Bình",
+    "rentalDate": "2026-01-05",
+    "returnDate": "2026-01-06",
+    "totalPrice": 450000,
+    "createdAt": "2026-01-05T08:30:00.000Z"
+  },
+  {
+    "id": "ord007",
+    "productId": "7",
+    "productName": "Vest trắng slim fit",
+    "customerName": "Hoàng Văn Minh",
+    "rentalDate": "2026-01-10",
+    "returnDate": "2026-01-11",
+    "totalPrice": 350000,
+    "createdAt": "2026-01-10T09:00:00.000Z"
+  },
+  {
+    "id": "ord008",
+    "productId": "5",
+    "productName": "Đầm cocktail đen thanh lịch",
+    "customerName": "Nguyễn Thị Hương",
+    "rentalDate": "2026-01-15",
+    "returnDate": "2026-01-16",
+    "totalPrice": 200000,
+    "createdAt": "2026-01-15T14:00:00.000Z"
+  },
+  {
+    "id": "ord009",
+    "productId": "1",
+    "productName": "Váy dạ hội đỏ sang trọng",
+    "customerName": "Phan Thị Linh",
+    "rentalDate": "2026-01-20",
+    "returnDate": "2026-01-22",
+    "totalPrice": 350000,
+    "createdAt": "2026-01-20T10:00:00.000Z"
+  },
+  {
+    "id": "ord010",
+    "productId": "2",
+    "productName": "Áo dài truyền thống hồng pastel",
+    "customerName": "Bùi Thị Kim",
+    "rentalDate": "2026-02-01",
+    "returnDate": "2026-02-02",
+    "totalPrice": 250000,
+    "createdAt": "2026-02-01T08:00:00.000Z"
+  },
+  {
+    "id": "ord011",
+    "productId": "4",
+    "productName": "Váy cưới trắng đuôi cá",
+    "customerName": "Trịnh Thị Ngọc",
+    "rentalDate": "2026-02-08",
+    "returnDate": "2026-02-09",
+    "totalPrice": 800000,
+    "createdAt": "2026-02-08T07:00:00.000Z"
+  },
+  {
+    "id": "ord012",
+    "productId": "3",
+    "productName": "Vest nam xanh navy cổ điển",
+    "customerName": "Lý Văn Hùng",
+    "rentalDate": "2026-02-14",
+    "returnDate": "2026-02-15",
+    "totalPrice": 400000,
+    "createdAt": "2026-02-14T09:00:00.000Z"
+  }
+]
