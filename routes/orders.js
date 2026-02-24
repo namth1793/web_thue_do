@@ -19,8 +19,8 @@ router.get('/', verifyToken, (req, res) => {
   res.json(orders.slice().reverse()); // newest first
 });
 
-// POST /api/orders - protected
-router.post('/', verifyToken, (req, res) => {
+// POST /api/orders - public (customers place orders without login)
+router.post('/', (req, res) => {
   const { productId, productName, customerName, customerPhone, rentalDate, returnDate, totalPrice } = req.body;
   if (!productName || !customerName || !rentalDate || !returnDate || !totalPrice) {
     return res.status(400).json({ message: 'Thiếu thông tin bắt buộc' });
