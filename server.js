@@ -7,28 +7,17 @@ const path = require('path');
 
 const app = express();
 
-// CORS: cho phép localhost (dev) + Vercel domain (production)
-const ALLOWED_ORIGIN = process.env.ALLOWED_ORIGIN || '';
+// CORS: allow all origins (JWT uses Authorization header, not cookies)
 app.use(cors({
-  origin: (origin, callback) => {
-    if (
-      !origin ||
-      /^http:\/\/localhost(:\d+)?$/.test(origin) ||
-      /^https:\/\/.*\.vercel\.app$/.test(origin) ||
-      (ALLOWED_ORIGIN && origin === ALLOWED_ORIGIN)
-    ) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true,
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 app.use(express.json());
 
-// Tự động hash mật khẩu plaintext khi khởi động
+// Hash plaintext passwords on startup
 const usersPath = path.join(__dirname, 'data/users.json');
-(function initUsers() {
+try {
   let users = JSON.parse(fs.readFileSync(usersPath, 'utf8'));
   let changed = false;
   users = users.map(user => {
@@ -40,21 +29,31 @@ const usersPath = path.join(__dirname, 'data/users.json');
   });
   if (changed) {
     fs.writeFileSync(usersPath, JSON.stringify(users, null, 2));
-    console.log('✅ Đã hash mật khẩu admin');
+    console.log('Password hashed successfully');
   }
-})();
+} catch (err) {
+  console.error('Warning: could not initialize users:', err.message);
+}
+
+// Serve uploaded images as static files
+const uploadsDir = path.join(__dirname, 'uploads');
+if (!fs.existsSync(uploadsDir)) fs.mkdirSync(uploadsDir);
+app.use('/uploads', express.static(uploadsDir));
 
 // Routes
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/products', require('./routes/products'));
 app.use('/api/revenue', require('./routes/revenue'));
+app.use('/api/orders', require('./routes/orders'));
+app.use('/api/upload', require('./routes/upload'));
 
 // Health check
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', message: 'Thuê Đồ API đang chạy' });
+  res.json({ status: 'ok', message: 'Thue Do API is running' });
 });
 
 const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => {
-  console.log(`🚀 Server đang chạy tại http://localhost:${PORT}`);
+// Bind to 0.0.0.0 explicitly — required for Railway/Docker environments
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server running on port ${PORT}`);
 });
