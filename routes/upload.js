@@ -2,18 +2,9 @@ const express = require('express');
 const multer = require('multer');
 const path = require('path');
 const { verifyToken } = require('../middleware/auth');
+const { storage } = require('../utils/cloudinary');
 
 const router = express.Router();
-
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, path.join(__dirname, '../uploads'));
-  },
-  filename: (req, file, cb) => {
-    const ext = path.extname(file.originalname).toLowerCase();
-    cb(null, `${Date.now()}-${Math.random().toString(36).slice(2)}${ext}`);
-  },
-});
 
 const upload = multer({
   storage,
@@ -30,8 +21,7 @@ router.post('/', verifyToken, upload.single('image'), (req, res) => {
   if (!req.file) {
     return res.status(400).json({ message: 'Không có file hoặc định dạng không hợp lệ' });
   }
-  const baseUrl = `${req.protocol}://${req.get('host')}`;
-  res.json({ url: `${baseUrl}/uploads/${req.file.filename}` });
+  res.json({ url: req.file.path });
 });
 
 module.exports = router;

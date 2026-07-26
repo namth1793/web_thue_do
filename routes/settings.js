@@ -19,15 +19,18 @@ router.get('/', (req, res) => {
 });
 
 // PUT /api/settings - protected
+const EDITABLE_FIELDS = [
+  'heroImage', 'heroTitle', 'heroSubtitle',
+  'logo', 'favicon', 'siteName', 'tagline',
+  'phone', 'facebookUrl', 'zaloPhone',
+];
+
 router.put('/', verifyToken, (req, res) => {
   const current = getSettings();
-  const { heroImage, heroTitle, heroSubtitle } = req.body;
-  const updated = {
-    ...current,
-    ...(heroImage !== undefined && { heroImage }),
-    ...(heroTitle !== undefined && { heroTitle }),
-    ...(heroSubtitle !== undefined && { heroSubtitle }),
-  };
+  const updated = { ...current };
+  for (const field of EDITABLE_FIELDS) {
+    if (req.body[field] !== undefined) updated[field] = req.body[field];
+  }
   saveSettings(updated);
   res.json(updated);
 });

@@ -35,11 +35,6 @@ try {
   console.error('Warning: could not initialize users:', err.message);
 }
 
-// Serve uploaded images as static files
-const uploadsDir = path.join(__dirname, 'uploads');
-if (!fs.existsSync(uploadsDir)) fs.mkdirSync(uploadsDir);
-app.use('/uploads', express.static(uploadsDir));
-
 // Routes
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/products', require('./routes/products'));
