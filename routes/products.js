@@ -1,17 +1,17 @@
 const express = require('express');
-const fs = require('fs');
 const path = require('path');
 const { verifyToken } = require('../middleware/auth');
+const { readJson, writeJson } = require('../utils/jsonStore');
 
 const router = express.Router();
 const productsPath = path.join(__dirname, '../data/products.json');
 
 function getProducts() {
-  return JSON.parse(fs.readFileSync(productsPath, 'utf8'));
+  return readJson(productsPath, []);
 }
 
 function saveProducts(products) {
-  fs.writeFileSync(productsPath, JSON.stringify(products, null, 2));
+  writeJson(productsPath, products);
 }
 
 // GET /api/products - public

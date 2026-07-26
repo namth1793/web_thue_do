@@ -1,13 +1,13 @@
 const express = require('express');
-const fs = require('fs');
 const path = require('path');
 const { verifyToken } = require('../middleware/auth');
+const { readJson } = require('../utils/jsonStore');
 
 const router = express.Router();
 const ordersPath = path.join(__dirname, '../data/orders.json');
 
 function getOrders() {
-  return JSON.parse(fs.readFileSync(ordersPath, 'utf8'));
+  return readJson(ordersPath, []);
 }
 
 // GET /api/revenue - protected

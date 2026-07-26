@@ -1,16 +1,16 @@
 const express = require('express');
-const fs = require('fs');
 const path = require('path');
 const { verifyToken } = require('../middleware/auth');
+const { readJson, writeJson } = require('../utils/jsonStore');
 
 const router = express.Router();
 const newsPath = path.join(__dirname, '../data/news.json');
 
 function getNews() {
-  return JSON.parse(fs.readFileSync(newsPath, 'utf8'));
+  return readJson(newsPath, []);
 }
 function saveNews(news) {
-  fs.writeFileSync(newsPath, JSON.stringify(news, null, 2));
+  writeJson(newsPath, news);
 }
 
 // GET /api/news - public

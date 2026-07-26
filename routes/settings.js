@@ -1,16 +1,29 @@
 const express = require('express');
-const fs = require('fs');
 const path = require('path');
 const { verifyToken } = require('../middleware/auth');
+const { readJson, writeJson } = require('../utils/jsonStore');
 
 const router = express.Router();
 const settingsPath = path.join(__dirname, '../data/settings.json');
 
+const DEFAULT_SETTINGS = {
+  heroImage: 'https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=1600&h=900&fit=crop',
+  heroTitle: 'Khám phá Mộc Châu trên những chiếc Triumph',
+  heroSubtitle: 'Thuê xe máy chất lượng cao, trải nghiệm cung đường đẹp nhất tại Mộc Châu. Đặt xe ngay hôm nay!',
+  logo: '',
+  favicon: '',
+  siteName: 'Phan Hoa Motorbike Rental Mộc Châu',
+  tagline: 'CHO THUÊ XE MÁY',
+  phone: '0931.6868.97',
+  facebookUrl: 'https://www.facebook.com/phanhoamc',
+  zaloPhone: '0931686897',
+};
+
 function getSettings() {
-  return JSON.parse(fs.readFileSync(settingsPath, 'utf8'));
+  return readJson(settingsPath, DEFAULT_SETTINGS);
 }
 function saveSettings(data) {
-  fs.writeFileSync(settingsPath, JSON.stringify(data, null, 2));
+  writeJson(settingsPath, data);
 }
 
 // GET /api/settings - public
